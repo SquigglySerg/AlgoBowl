@@ -8,14 +8,19 @@ import java.util.Set;
 
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
+import org.jgrapht.alg.StoerWagnerMinimumCut;
 
 public class minCut {
 	private SimpleGraph<Vertex, DefaultEdge> graph;
 	private String inputFile;
+	
 	private int numVertices = 0;
 	private int numEdges = 0;
+	
 	private Map<Integer, Vertex> vertices;
 	private Set<Integer> keySet;
+	
+	private StoerWagnerMinimumCut<Vertex, DefaultEdge> minCut;
 	
 	minCut(String filename){
 		inputFile = filename;
@@ -56,15 +61,19 @@ public class minCut {
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getLocalizedMessage());
 		}
-		
-		Set<DefaultEdge> edges = graph.edgeSet();
-		for(DefaultEdge e: edges){
-			System.out.println(e.toString());
+	}
+
+	void findMinCut(){ //Does not work with our problem
+		minCut = new StoerWagnerMinimumCut<Vertex, DefaultEdge>( graph );
+		Set<Vertex> cutSet1 = minCut.minCut();
+		for(Vertex v: cutSet1){
+			System.out.println(v.toString());
 		}
 	}
 	
 	public static void main(String[] args) {
 		minCut temp = new minCut("src/tempInput.txt");
+		temp.findMinCut();
 
 	}
 
