@@ -1,4 +1,3 @@
-
 public class Vertex {
 	private int id;
 	
