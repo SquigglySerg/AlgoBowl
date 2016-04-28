@@ -57,7 +57,10 @@ public class minCut {
 			System.out.println(e.getLocalizedMessage());
 		}
 		
-		//Set<DefaultEdges>
+		Set<DefaultEdge> edges = graph.edgeSet();
+		for(DefaultEdge e: edges){
+			System.out.println(e.toString());
+		}
 	}
 	
 	public static void main(String[] args) {
