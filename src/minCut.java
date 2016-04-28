@@ -7,6 +7,8 @@ import java.util.Scanner;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
 
+import sun.security.provider.certpath.Vertex;
+
 public class minCut {
 	private SimpleGraph<Vertex, DefaultEdge> graph;
 	private String inputFile;
