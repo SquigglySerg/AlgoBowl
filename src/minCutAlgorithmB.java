@@ -40,7 +40,6 @@ public class minCutAlgorithmB {
         B = new HashSet<Integer>();
         scan.close();
         fin.close();
-        System.out.println("init " + num_vertices);
     }
 
     public static void main(String[] args) throws IOException {
@@ -63,7 +62,8 @@ public class minCutAlgorithmB {
             }
             count++;
         }
-        out += count + '\n';
+        out += count;
+        out += '\n';
         for(int i : A) {
             out += i + " ";
         }
@@ -97,6 +97,9 @@ public class minCutAlgorithmB {
     
     public int getBestVertex() {
         Vector<Integer> weights = new Vector<Integer>(num_vertices);
+        for(int i = 0; i < num_vertices; i++) {
+            weights.add(0);
+        }
         for(Pair<Integer, Integer> e : edges) {
             if((A.contains(e.first) && A.contains(e.second))
                     || B.contains(e.first) && B.contains(e.second))  {
@@ -108,7 +111,7 @@ public class minCutAlgorithmB {
             } else {
                 v = e.second;
             }
-            weights.set(v - 1, weights.get(v) + 1);
+            weights.set(v - 1, weights.get(v - 1) + 1);
         }
         int best_weight = 0;
         int best_vertex = -1;
