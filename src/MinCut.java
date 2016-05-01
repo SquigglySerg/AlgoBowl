@@ -3,7 +3,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
@@ -50,6 +52,11 @@ public class MinCut {
             use.shiftVertex(next); // Shift the best vertex to set A
         }
         System.out.println(use.getOutput());
+        
+        PrintWriter writer = new PrintWriter("src/output.txt");
+        writer.print(use.getOutput());
+        writer.close();
+        
     }
     
     private String getOutput() {
