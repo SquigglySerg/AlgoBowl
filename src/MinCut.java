@@ -64,7 +64,7 @@ public class MinCut {
         int count = 0;
         for(Pair<Integer, Integer> e : edges) {
             if((A.contains(e.first) && A.contains(e.second))
-                    || B.contains(e.first) && B.contains(e.second))  {
+                    || (B.contains(e.first) && B.contains(e.second)))  {
                 continue;
             }
             count++;
@@ -88,12 +88,8 @@ public class MinCut {
     }
     
     public void shiftVertex(int vertex) {
-        int use = vertex;
-        if(vertex == -1) {
-            use = B.iterator().next();
-        }
-        B.remove(use);
-        A.add(use);
+        B.remove(vertex);
+        A.add(vertex);
     }
     
     public void initialize() {
@@ -113,7 +109,7 @@ public class MinCut {
         }
         for(Pair<Integer, Integer> e : edges) {
             if((A.contains(e.first) && A.contains(e.second))
-                    || B.contains(e.first) && B.contains(e.second))  {
+                    || (B.contains(e.first) && B.contains(e.second)))  {
                 continue;
             }
             int v;
@@ -124,7 +120,7 @@ public class MinCut {
             }
             weights.set(v - 1, weights.get(v - 1) + 1);
         }
-        int best_weight = 0;
+        int best_weight = -1;
         int best_vertex = -1;
         for(int i = 0; i < weights.size(); i++) {
             int next = weights.get(i);
