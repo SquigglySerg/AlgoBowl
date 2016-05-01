@@ -81,8 +81,12 @@ public class MinCut {
     }
     
     public void shiftVertex(int vertex) {
-        B.remove(vertex);
-        A.add(vertex);
+        int use = vertex;
+        if(vertex == -1) {
+            use = B.iterator().next();
+        }
+        B.remove(use);
+        A.add(use);
     }
     
     public void initialize() {
