@@ -12,7 +12,7 @@ import java.util.Vector;
 
 import org.jgrapht.alg.util.Pair;
 
-public class minCutAlgorithmB {
+public class MinCut {
     private Set<Integer> A;
     private Set<Integer> B;
     private int num_vertices;
@@ -24,7 +24,7 @@ public class minCutAlgorithmB {
      * Constructor will read input from file and store
      * the edge relationships and the number of vertices
      */
-    public minCutAlgorithmB(String filepath) throws IOException {
+    public MinCut(String filepath) throws IOException {
         edges = new HashSet<Pair<Integer, Integer>>();
         File f = new File(filepath);
         FileReader fin = new FileReader(f);
@@ -43,7 +43,7 @@ public class minCutAlgorithmB {
     }
 
     public static void main(String[] args) throws IOException {
-        minCutAlgorithmB use = new minCutAlgorithmB(PATH);
+        MinCut use = new MinCut(PATH);
         use.initialize();
         while(!use.done()) {
             int next = use.getBestVertex(); // Find the best vertex to move to set A
