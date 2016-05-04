@@ -1,9 +1,7 @@
 
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashSet;
@@ -20,7 +18,7 @@ public class MinCut {
     private int num_vertices;
     private Set<Pair<Integer, Integer>> edges;
     
-    final public static String PATH = "./src/input_group5.txt";
+    final public static String PATH = "./src/input_group12.txt";
     
     /*
      * Constructor will read input from file and store
@@ -46,12 +44,22 @@ public class MinCut {
 
     public static void main(String[] args) throws IOException {
         MinCut use = new MinCut(PATH);
+        
+        long startTime = 0, endTime = 0;
+		double duration = 0;
+		startTime = System.nanoTime();
+		
         use.initialize();
         while(!use.done()) {
             int next = use.getBestVertex(); // Find the best vertex to move to set A
             use.shiftVertex(next); // Shift the best vertex to set A
         }
+        
+        endTime = System.nanoTime();
+		duration = (double)(endTime - startTime)/1000000; //Calculating time cost
+        
         System.out.println(use.getOutput());
+        System.out.println("Duration: " + duration + " ms");
         
         PrintWriter writer = new PrintWriter("src/output.txt");
         writer.print(use.getOutput());
