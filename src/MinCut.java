@@ -84,7 +84,13 @@ public class MinCut {
     }
 
     public boolean done() {
-        return (A.size() == B.size()); // we are done when the two sets each contain n/2 vertices
+        int A_size = A.size();
+        int B_size = B.size();
+        if((A_size + B_size) % 2 == 0) {
+            return(A_size == B_size);
+        } else {
+            return(A_size + 1 == B_size || A_size - 1 == B_size);
+        }
     }
     
     public void shiftVertex(int vertex) {
@@ -105,7 +111,10 @@ public class MinCut {
     public int getBestVertex() {
         Vector<Integer> weights = new Vector<Integer>(num_vertices);
         for(int i = 0; i < num_vertices; i++) {
-            weights.add(0);
+            weights.add(-1);
+        }
+        for(int i : B) {
+            weights.set(i - 1, 0);
         }
         for(Pair<Integer, Integer> e : edges) {
             if((A.contains(e.first) && A.contains(e.second))
@@ -124,6 +133,9 @@ public class MinCut {
         int best_vertex = -1;
         for(int i = 0; i < weights.size(); i++) {
             int next = weights.get(i);
+            if(next == -1) {
+                continue;
+            }
             if(next > best_weight) {
                 best_weight = next;
                 best_vertex = i + 1;
