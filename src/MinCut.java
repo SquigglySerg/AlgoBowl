@@ -18,7 +18,9 @@ public class MinCut {
     private int num_vertices;
     private Set<Pair<Integer, Integer>> edges;
     
-    final public static String PATH = "./src/input";
+    final public static String PATH = "./src/";
+    final public static int START = 1;
+    final public static int END = 17;
     
     /*
      * Constructor will read input from file and store
@@ -43,12 +45,18 @@ public class MinCut {
     }
 
     public static void main(String[] args) throws IOException {
-        MinCut use = new MinCut(PATH + ".txt");
+        for(int i = START; i <= END; i++) {
+            doMinCut(i);
+        }
+    }
+    
+    public static void doMinCut(int input) throws IOException  {
+        MinCut use = new MinCut(PATH + "input_group" + input + ".txt");
         
         long startTime = 0, endTime = 0;
-		double duration = 0;
-		startTime = System.nanoTime();
-		
+        double duration = 0;
+        startTime = System.nanoTime();
+        
         use.initialize();
         while(!use.done()) {
             int next = use.getBestVertex(); // Find the best vertex to move to set A
@@ -56,15 +64,14 @@ public class MinCut {
         }
         
         endTime = System.nanoTime();
-		duration = (double)(endTime - startTime)/1000000; //Calculating time cost
+        duration = (double)(endTime - startTime)/1000000; //Calculating time cost
         
         System.out.println(use.getOutput());
         System.out.println("Duration: " + duration + " ms");
         
-        PrintWriter writer = new PrintWriter(PATH + "_output.txt");
+        PrintWriter writer = new PrintWriter(PATH + "output_group" + input + ".txt");
         writer.print(use.getOutput());
         writer.close();
-        
     }
     
     private String getOutput() {
