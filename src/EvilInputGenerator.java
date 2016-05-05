@@ -4,12 +4,14 @@
  */
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
 
 /*
@@ -48,6 +50,20 @@ public class EvilInputGenerator {
             fout.write(i + "\n");
         }
         fout.close();
+        FileReader fin = new FileReader(input);
+        Scanner scan = new Scanner(fin);
+        while(scan.hasNext()) {
+            int a = scan.nextInt();
+            int b = -1;
+            if(scan.hasNext()) {
+                b = scan.nextInt();
+            }
+            if (a == b) {
+                System.out.println("bad " + a);
+            }
+        }
+        scan.close();
+        fin.close();
     }
     
     public Set<String> get_input() {
@@ -67,21 +83,25 @@ public class EvilInputGenerator {
             DefaultEdge edge = null;
             do {
                 vertex_b = vertices.get(rand.nextInt(MAX_VERTICES / 2) + 1);
-                if(vertex_a != vertex_b) {
+                if(vertex_a.getId() != vertex_b.getId()) {
                     edge = graph.addEdge(vertex_a, vertex_b);
                 }
             } while(edge == null);
-            edges.add(vertex_a.getId() + " " + vertex_b.getId());
-            edge_count++;
+            if(vertex_a.getId() != vertex_b.getId()) {
+                edges.add(vertex_a.getId() + " " + vertex_b.getId());
+                edge_count++;
+            }
             vertex_a = vertices.get(MAX_VERTICES - rand.nextInt(MAX_VERTICES / 2));
             do {
                 vertex_b = vertices.get(MAX_VERTICES - rand.nextInt(MAX_VERTICES / 2));
-                if(vertex_a != vertex_b) {
+                if(vertex_a.getId() != vertex_b.getId()) {
                     edge = graph.addEdge(vertex_a, vertex_b);
                 }
             } while(edge == null);
-            edges.add(vertex_a.getId() + " " + vertex_b.getId());
-            edge_count++;
+            if(vertex_a.getId() != vertex_b.getId()) {
+                edges.add(vertex_a.getId() + " " + vertex_b.getId());
+                edge_count++;
+            }
         }
         Vertex bridge_a = vertices.get(MAX_VERTICES / 2);
         Vertex bridge_b = vertices.get(MAX_VERTICES / 2 + 1);
