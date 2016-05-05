@@ -13,4 +13,6 @@ hs_err_pid*
 /bin/
 .project
 .classpath
+src/input.txt
+src/output.txt
 
