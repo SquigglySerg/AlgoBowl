@@ -18,7 +18,7 @@ public class MinCut {
     private int num_vertices;
     private Set<Pair<Integer, Integer>> edges;
     
-    final public static String PATH = "./src/input";
+    final public static String PATH = "src/input_group1";
     
     /*
      * Constructor will read input from file and store
@@ -148,11 +148,6 @@ public class MinCut {
                 best_weight = next;
                 best_vertex = i + 1;
             }
-        }
-        if(best_vertex == 1 && A.contains(1)){ //Needed if no 'best' edge
-        	Random rand = new Random();
-        	best_vertex = rand.nextInt(num_vertices) + 1;
-        	
         }
         return best_vertex;
     }
