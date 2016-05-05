@@ -20,7 +20,7 @@ public class MinCut {
     private int num_vertices;
     private Set<Pair<Integer, Integer>> edges;
     
-    final public static String PATH = "./src/input.txt";
+    final public static String PATH = "./src/input_group1";
     
     /*
      * Constructor will read input from file and store
@@ -45,7 +45,7 @@ public class MinCut {
     }
 
     public static void main(String[] args) throws IOException {
-        MinCut use = new MinCut(PATH);
+        MinCut use = new MinCut(PATH + ".txt");
         use.initialize();
         while(!use.done()) {
             int next = use.getBestVertex(); // Find the best vertex to move to set A
@@ -53,7 +53,7 @@ public class MinCut {
         }
         System.out.println(use.getOutput());
         
-        PrintWriter writer = new PrintWriter("src/output.txt");
+        PrintWriter writer = new PrintWriter(PATH + "_output.txt");
         writer.print(use.getOutput());
         writer.close();
         
