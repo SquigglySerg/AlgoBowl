@@ -18,7 +18,7 @@ public class MinCut {
     private int num_vertices;
     private Set<Pair<Integer, Integer>> edges;
     
-    final public static String PATH = "./src/input_group1";
+    final public static String PATH = "./src/input_group17";
     
     /*
      * Constructor will read input from file and store
