@@ -17,7 +17,7 @@ public class MinCut {
     private Set<Integer> B;
     private int num_vertices;
     private Set<Pair<Integer, Integer>> edges;
-    
+
     final public static String PATH = "./src/";
     final public static int START = 1;
     final public static int END = 17;
@@ -155,11 +155,6 @@ public class MinCut {
                 best_weight = next;
                 best_vertex = i + 1;
             }
-        }
-        if(best_vertex == 1 && A.contains(1)){ //Needed if no 'best' edge
-        	Random rand = new Random();
-        	best_vertex = rand.nextInt(num_vertices) + 1;
-        	
         }
         return best_vertex;
     }
